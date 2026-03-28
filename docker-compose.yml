@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: shield-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - backend-data:/app/data
+      - backend-uploads:/app/uploads
+    restart: unless-stopped
+    environment:
+      - APP_NAME=星川智盾
+      - CORS_ORIGINS=["http://localhost","http://localhost:80","http://localhost:5173"]
+
+  frontend:
+    build: ./frontend
+    container_name: shield-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  backend-data:
+  backend-uploads:
