@@ -11,7 +11,7 @@ interface ParseResult {
   failedLines: number
   duration: string
   threats: number
-  sessionId: string
+  sessionId: string | null
 }
 
 export default function LogUploadPage() {
